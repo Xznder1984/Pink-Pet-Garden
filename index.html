@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pink Pet Paradise 🌸</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     APP FRAME (Desktop Title Bar)
+═══════════════════════════════════════════════ -->
+<div id="app-frame">
+  <div class="frame-title">
+    <span>🌸</span>
+    <span>Pink Pet Paradise</span>
+  </div>
+  <div class="frame-controls">
+    <button class="frame-btn minimize" onclick="window.minimizeApp()" title="Minimize">−</button>
+    <button class="frame-btn maximize" onclick="window.maximizeApp()" title="Maximize">+</button>
+    <button class="frame-btn close" onclick="window.closeApp()" title="Close">×</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 1: MENU SCREEN
+═══════════════════════════════════════════════ -->
+<div id="screen-menu" class="screen active">
+  <!-- Animated background elements -->
+  <div class="cloud-bg">
+    <div class="cloud" style="top:8%;left:5%;animation-delay:0s"></div>
+    <div class="cloud" style="top:15%;left:60%;animation-delay:2s"></div>
+    <div class="cloud" style="top:5%;left:80%;animation-delay:4s"></div>
+    <div class="cloud" style="top:70%;left:20%;animation-delay:1s"></div>
+    <div class="cloud" style="top:80%;left:75%;animation-delay:3s"></div>
+  </div>
+
+  <div id="menu-petals"></div>
+
+  <div class="menu-center">
+    <div class="title-badge">✨ A cozy pet world ✨</div>
+    <h1 class="game-title">Pink Pet<br/>Paradise</h1>
+    <p class="game-subtitle">🌸 Hatch eggs · Grow gardens · Collect friends 🌸</p>
+
+    <div class="menu-buttons">
+      <button class="btn-main" onclick="UI.showGame()">
+        🎮 Play Now
+      </button>
+      <button class="btn-secondary" onclick="UI.showHowTo()">
+        📖 How to Play
+      </button>
+    </div>
+
+    <div class="pet-preview-row">
+      <span class="pet-icon-preview" style="animation-delay:0s">🐱</span>
+      <span class="pet-icon-preview" style="animation-delay:0.2s">🐶</span>
+      <span class="pet-icon-preview" style="animation-delay:0.4s">🐹</span>
+      <span class="pet-icon-preview" style="animation-delay:0.6s">🐰</span>
+      <span class="pet-icon-preview" style="animation-delay:0.8s">🦊</span>
+      <span class="pet-icon-preview" style="animation-delay:1.0s">🐻</span>
+      <span class="pet-icon-preview" style="animation-delay:1.2s">⭐</span>
+    </div>
+
+    <div class="version-tag">v2.0 · Made with 💕</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     HOW-TO SCREEN
+═══════════════════════════════════════════════ -->
+<div id="screen-howto" class="screen overlay-screen hidden">
+  <div class="panel-card howto-card">
+    <h2>📖 How to Play</h2>
+    <div class="howto-grid">
+      <div class="howto-item">
+        <span class="howto-icon">🥚</span>
+        <b>Hatch Eggs</b>
+        <span>Buy eggs in the Shop to get new pets!</span>
+      </div>
+      <div class="howto-item">
+        <span class="howto-icon">🍎</span>
+        <b>Feed Pets</b>
+        <span>Click a pet then press Feed to keep them happy.</span>
+      </div>
+      <div class="howto-item">
+        <span class="howto-icon">🌸</span>
+        <b>Garden</b>
+        <span>Plant flowers and watch them bloom over time.</span>
+      </div>
+      <div class="howto-item">
+        <span class="howto-icon">🎮</span>
+        <b>Minigames</b>
+        <span>Play mini-games to earn bonus coins!</span>
+      </div>
+      <div class="howto-item">
+        <span class="howto-icon">🛍️</span>
+        <b>Shop</b>
+        <span>Spend coins on eggs, toys, and decorations.</span>
+      </div>
+      <div class="howto-item">
+        <span class="howto-icon">🌤️</span>
+        <b>Day/Night</b>
+        <span>Watch the day cycle and weather change!</span>
+      </div>
+    </div>
+    <button class="btn-main" onclick="UI.hideHowTo()">Got it! 🌟</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     SCREEN 2: MAIN GAME SCREEN
+═══════════════════════════════════════════════ -->
+<div id="screen-game" class="screen hidden">
+
+  <!-- TOP BAR -->
+  <div id="top-bar">
+    <button class="icon-btn" onclick="UI.backToMenu()" title="Back to Menu">🏠</button>
+
+    <div class="top-bar-center">
+      <div id="coin-display">
+        <span class="coin-icon">🪙</span>
+        <span id="coin-count">100</span>
+      </div>
+
+      <div id="weather-display">
+        <span id="weather-icon">☀️</span>
+        <span id="weather-name">Sunny</span>
+      </div>
+
+      <div id="time-display">
+        <span id="day-icon">☀️</span>
+        <span id="day-name">Day</span>
+      </div>
+    </div>
+
+    <div class="top-bar-right">
+      <button class="icon-btn" onclick="Music.toggle()" title="Toggle Music">🎵</button>
+      <button class="icon-btn" onclick="SaveSystem.saveGame()" title="Save Game">💾</button>
+    </div>
+  </div>
+
+  <!-- GAME LAYOUT -->
+  <div id="game-layout">
+
+    <!-- LEFT: Pet sidebar -->
+    <div id="pet-sidebar">
+      <div class="sidebar-title">🐾 My Pets</div>
+      <div id="pet-list-container">
+        <div style="text-align:center;padding:20px 10px;color:#C090B0;font-size:12px;">
+          <div style="font-size:24px;margin-bottom:8px;">🥚</div>
+          Buy an egg in the Shop!
+        </div>
+      </div>
+      <div class="sidebar-hint">Click a pet to interact!</div>
+    </div>
+
+    <!-- CENTER: Canvas world -->
+    <div id="canvas-wrapper">
+      <canvas id="game-canvas"></canvas>
+      <div id="particle-overlay"></div>
+
+      <!-- Pet popup -->
+      <div id="pet-popup" class="hidden">
+        <div id="pet-popup-name"></div>
+        <div id="pet-popup-stats"></div>
+        <div class="pet-popup-buttons">
+          <button class="btn-sm btn-feed" onclick="Pets.feedSelected()">🍎 Feed</button>
+          <button class="btn-sm btn-play" onclick="Pets.playWithSelected()">🎾 Play</button>
+          <button class="btn-sm btn-close" onclick="UI.closePetPopup()">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Events panel -->
+    <div id="right-panel">
+      <div class="sidebar-title">📋 Events</div>
+      <div id="event-log">
+        <div class="event-item">
+          <span class="event-time">--:--</span> 🌸 Welcome to Pink Pet Paradise!
+        </div>
+      </div>
+      <div class="sidebar-title" style="margin-top:12px">🌟 Achievements</div>
+      <div id="achievement-list"></div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM TABS -->
+  <div id="bottom-tabs">
+    <button class="tab-btn active" data-tab="garden" onclick="UI.switchTab('garden')">🌺 Garden</button>
+    <button class="tab-btn" data-tab="shop" onclick="UI.switchTab('shop')">🛍️ Shop</button>
+    <button class="tab-btn" data-tab="decor" onclick="UI.switchTab('decor')">🏡 Decor</button>
+    <button class="tab-btn" data-tab="mini" onclick="UI.switchTab('mini')">🎮 Games</button>
+  </div>
+
+  <!-- BOTTOM PANELS -->
+
+  <!-- Garden Panel -->
+  <div id="panel-garden" class="bottom-panel active-panel">
+    <div class="panel-header">🌺 Garden — Plant and grow flowers!</div>
+    <div id="flower-selector"></div>
+    <div class="panel-hint">Select a flower, then click soil to plant. Click bloomed flowers to harvest!</div>
+  </div>
+
+  <!-- Shop Panel -->
+  <div id="panel-shop" class="bottom-panel hidden-panel">
+    <div class="panel-header">🛍️ Shop</div>
+    <div id="shop-items-container"></div>
+  </div>
+
+  <!-- Decor Panel -->
+  <div id="panel-decor" class="bottom-panel hidden-panel">
+    <div class="panel-header">🏡 Decorations — Click the garden to place!</div>
+    <div id="decor-selector"></div>
+  </div>
+
+  <!-- Minigames Panel -->
+  <div id="panel-mini" class="bottom-panel hidden-panel">
+    <div class="panel-header">🎮 Mini-Games — Earn coins!</div>
+    <div class="minigame-choice">
+      <button class="btn-game-choice" onclick="Minigame.startHearts()">
+        <span class="game-icon">💖</span>
+        <span class="game-title">Catch Hearts</span>
+        <small>Click falling hearts before they disappear!</small>
+      </button>
+      <button class="btn-game-choice" onclick="Minigame.startPetClick()">
+        <span class="game-icon">🐾</span>
+        <span class="game-title">Pet Frenzy</span>
+        <small>Click the pets as fast as you can!</small>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MINIGAME OVERLAY
+═══════════════════════════════════════════════ -->
+<div id="minigame-overlay" class="hidden">
+  <div id="minigame-area">
+    <div id="minigame-header">
+      <span id="minigame-title">💖 Catch Hearts</span>
+      <span id="minigame-score-display">Score: 0</span>
+      <span id="minigame-timer-display">⏱ 30</span>
+    </div>
+    <canvas id="minigame-canvas"></canvas>
+    <button class="btn-secondary" onclick="Minigame.quit()">Quit Game</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     EGG HATCH OVERLAY
+═══════════════════════════════════════════════ -->
+<div id="hatch-overlay" class="hidden">
+  <div class="hatch-card">
+    <div class="egg-anim" id="hatch-egg">🥚</div>
+    <div id="hatch-text">Something is hatching...</div>
+    <div id="hatch-pet-reveal" class="hidden">
+      <div id="hatch-pet-emoji"></div>
+      <div id="hatch-pet-name"></div>
+      <p>has joined your paradise! 🎉</p>
+      <button class="btn-main" onclick="UI.closeHatch()">Yay! 🌟</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     NOTIFICATION TOAST
+═══════════════════════════════════════════════ -->
+<div id="toast" class="toast hidden"></div>
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════ -->
+<script src="game/save.js"></script>
+<script src="game/particles.js"></script>
+<script src="game/weather.js"></script>
+<script src="game/pets.js"></script>
+<script src="game/garden.js"></script>
+<script src="game/shop.js"></script>
+<script src="game/minigame.js"></script>
+<script src="game/ui.js"></script>
+<script src="game/engine.js"></script>
+
+<!-- Desktop App Window Controls -->
+<script>
+  // Check if running in Electron
+  const isElectron = () => {
+    return typeof window.electronAPI !== 'undefined';
+  };
+
+  // Apply desktop styling when in Electron
+  if (isElectron()) {
+    document.body.classList.add('desktop-app');
+  } else {
+    // Hide custom frame when running in browser
+    document.getElementById('app-frame').style.display = 'none';
+  }
+
+  // Track maximized state
+  let isMaximized = false;
+
+  // Window control functions
+  window.minimizeApp = () => {
+    if (isElectron()) window.electronAPI.minimizeWindow();
+  };
+
+  window.maximizeApp = () => {
+    if (isElectron()) {
+      window.electronAPI.maximizeWindow();
+      isMaximized = !isMaximized;
+      document.body.classList.toggle('maximized', isMaximized);
+    }
+  };
+
+  window.closeApp = () => {
+    if (isElectron()) window.electronAPI.closeWindow();
+  };
+
+  // Handle close dialog events from main process
+  if (isElectron()) {
+    // When close is requested, show our custom dialog
+    window.electronAPI.onCloseRequested((event) => {
+      // Show the custom close dialog
+      showCloseDialog();
+    });
+
+    // Save and then close
+    window.electronAPI.onSaveAndClose(async (event) => {
+      // Save the game
+      if (typeof SaveSystem !== 'undefined' && SaveSystem.saveGame) {
+        SaveSystem.saveGame();
+        // Give a moment for save to complete
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+      // Confirm close to main process
+      window.electronAPI.confirmClose();
+    });
+
+    // Clear save and close
+    window.electronAPI.onClearAndClose((event) => {
+      // Clear localStorage
+      localStorage.removeItem('pinkPetParadise_v2');
+      localStorage.removeItem('pinkPetParadise_backup');
+      // Confirm close to main process
+      window.electronAPI.confirmClose();
+    });
+  }
+
+  // Custom close dialog
+  function showCloseDialog() {
+    // Create dialog overlay
+    const dialog = document.createElement('div');
+    dialog.id = 'close-dialog';
+    dialog.innerHTML = `
+      <div class="close-dialog-overlay">
+        <div class="close-dialog-card">
+          <div class="close-dialog-icon">🌸</div>
+          <h2>Save Progress?</h2>
+          <p>Do you want to save your progress before closing?</p>
+          <p class="close-dialog-sub">Your pets and garden will be waiting for you next time!</p>
+          <div class="close-dialog-buttons">
+            <button class="btn-save-exit" onclick="handleSaveAndExit()">💾 Save & Exit</button>
+            <button class="btn-exit-no-save" onclick="handleExitNoSave()">🚪 Exit Without Saving</button>
+            <button class="btn-cancel" onclick="handleCancelClose()">❌ Cancel</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(dialog);
+  }
+
+  function removeCloseDialog() {
+    const dialog = document.getElementById('close-dialog');
+    if (dialog) dialog.remove();
+  }
+
+  async function handleSaveAndExit() {
+    removeCloseDialog();
+    // Save the game
+    if (typeof SaveSystem !== 'undefined' && SaveSystem.saveGame) {
+      SaveSystem.saveGame();
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    window.electronAPI.confirmClose();
+  }
+
+  function handleExitNoSave() {
+    removeCloseDialog();
+    // Clear localStorage
+    localStorage.removeItem('pinkPetParadise_v2');
+    localStorage.removeItem('pinkPetParadise_backup');
+    window.electronAPI.confirmClose();
+  }
+
+  function handleCancelClose() {
+    removeCloseDialog();
+    // Do nothing, just close the dialog
+  }
+</script>
+
+</body>
+</html>
